@@ -18,7 +18,22 @@ function App() {
 
   const addToContacts = (e) => {
     e.preventDefault();
-    setContacts([...contacts, form]);
+    const newArray = [...contacts];
+    newArray.push(form);
+    setContacts(newArray);
+
+    // setContacts([...contacts, form]);
+  };
+
+  const deleteContact = (index) => {
+    const newArray = [...contacts];
+    newArray.splice(index, 1);
+    setContacts(newArray);
+  };
+
+  const buttonStyle = {
+    marginLeft: "5px",
+    marginRight: "5px",
   };
 
   return (
@@ -54,6 +69,17 @@ function App() {
             <h1>{contact.name}</h1>
             <h1>{contact.phone}</h1>
             <h1>{contact.email}</h1>
+
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteContact(index);
+              }}
+              style={buttonStyle}
+            >
+              Delete
+            </Button>
+            <Button style={buttonStyle}>Update</Button>
           </Contact>
         ))}
       </ContactContainer>
