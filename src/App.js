@@ -31,6 +31,12 @@ function App() {
     setContacts(newArray);
   };
 
+  const updateContact = (index) => {
+    const newArray = [...contacts];
+    newArray[index] = form;
+    setContacts(newArray);
+  };
+
   const buttonStyle = {
     marginLeft: "5px",
     marginRight: "5px",
@@ -79,7 +85,15 @@ function App() {
             >
               Delete
             </Button>
-            <Button style={buttonStyle}>Update</Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                updateContact(index);
+              }}
+              style={buttonStyle}
+            >
+              Update
+            </Button>
           </Contact>
         ))}
       </ContactContainer>
